@@ -1,0 +1,113 @@
+﻿@model List<PhoneStore.Domain.Entities.Phone>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #f2f6fa;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Tepadagi Phone Store qutisi */
+    .page-title-box {
+        display: inline-block;
+        background-color: #1e40af; /* ko‘k rang */
+        color: #fff;
+        font-weight: 900;
+        font-size: 2rem;
+        padding: 0.8rem 1.5rem;
+        border-radius: 12px; /* tort burchak */
+        margin-bottom: 3rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .phone-card {
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+        background: #ffffff;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        padding: 1rem;
+    }
+
+        .phone-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+        }
+
+        .phone-card .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+    .phone-name {
+        font-weight: 700;
+        font-size: 1.4rem;
+        color: #1e3a8a;
+        margin-bottom: 0.5rem;
+    }
+
+    .phone-price {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #0f766e;
+        margin-bottom: 0.5rem;
+    }
+
+    .phone-description {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 1rem;
+    }
+
+    .buy-btn {
+        background: linear-gradient(45deg, #f59e0b, #f97316);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 0.6rem 1.2rem;
+        font-weight: 600;
+        transition: transform 0.2s, background 0.3s;
+    }
+
+        .buy-btn:hover {
+            background: linear-gradient(45deg, #f97316, #f59e0b);
+            transform: scale(1.05);
+        }
+</style>
+
+<div class="container my-5 text-center">
+    <div class="page-title-box">
+        <i class="bi bi-phone-fill"></i> Phone Store
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center shadow-sm rounded mt-4">
+            Hozircha telefonlar mavjud emas.
+        </div>
+    }
+    else
+    {
+        <div class="row g-4 mt-4">
+            @foreach (var phone in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card phone-card h-100">
+                        <div class="card-body">
+                            <h5 class="phone-name">@phone.Name</h5>
+                            <p class="phone-price"><i class="bi bi-currency-dollar"></i> @phone.Price</p>
+                            <p class="phone-description">@phone.Description</p>
+                            <button class="buy-btn w-100"><i class="bi bi-cart-plus"></i> Buy</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

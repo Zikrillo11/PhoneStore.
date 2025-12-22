@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="PhoneStore.BLL/PhoneStore.BLL.csproj" />
+  <Project Path="PhoneStore.DAL/PhoneStore.DAL.csproj" />
+  <Project Path="PhoneStore.Domain/PhoneStore.Domain.csproj" />
+  <Project Path="PhoneStore.Shared/PhoneStore.Shared.csproj" />
+  <Project Path="PhoneStore/PhoneStore.csproj" />
+</Solution>

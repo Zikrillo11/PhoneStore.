@@ -1,0 +1,94 @@
+﻿@model List<PhoneStore.Domain.Entities.Phone>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<div class="container my-5">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-0">📱 Phone Management</h2>
+            <small class="text-muted">Admin panel · Telefonlar ro‘yxati</small>
+        </div>
+
+        <a href="/Admin/PhoneCreate"
+           class="btn btn-success btn-lg rounded-pill px-4 shadow-sm">
+            <i class="bi bi-plus-circle"></i> Add Phone
+        </a>
+        <a href="/Account/Logout" class="btn btn-danger btn-sm">
+            Logout
+        </a>
+    </div>
+
+    <!-- Empty -->
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            Hozircha telefonlar yo‘q 😴
+        </div>
+    }
+    else
+    {
+        <!-- Table -->
+        <div class="card shadow border-0 rounded-4">
+            <div class="card-body p-0">
+
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">#</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th class="text-end pe-4">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td class="ps-4 fw-bold text-muted">@(i + 1)</td>
+
+                                <td>
+                                    <div class="fw-semibold">@Model[i].Name</div>
+                                </td>
+
+                                <td>
+                                    <span class="badge bg-primary fs-6">
+                                        $@Model[i].Price
+                                    </span>
+                                </td>
+
+                                <td style="max-width:300px;">
+                                    <span class="text-muted">
+                                        @(string.IsNullOrEmpty(Model[i].Description)
+                                                                        ? "No description"
+                                                                        : Model[i].Description)
+                                    </span>
+                                </td>
+
+                                <td class="text-end pe-4">
+                                    <a href="/Admin/PhoneEdit/@Model[i].Id"
+                                       class="btn btn-outline-warning btn-sm rounded-pill me-1">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+
+                                    <a href="/Admin/PhoneDelete/@Model[i].Id"
+                                       class="btn btn-outline-danger btn-sm rounded-pill"
+                                       onclick="return confirm('Delete this phone?')">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    }
+
+</div>

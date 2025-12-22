@@ -1,0 +1,36 @@
+﻿@model PhoneStore.Domain.Entities.Phone
+
+<h3 class="mb-4">✏ Edit Phone</h3>
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label>Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Price</label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Image URL</label>
+        <input asp-for="ImageUrl" class="form-control" />
+    </div>
+
+    <img src="@Model.ImageUrl" style="width:120px;border-radius:14px" class="mb-3" />
+
+    <br />
+
+    <button class="btn btn-warning">
+        <i class="bi bi-save"></i> Update
+    </button>
+    <a href="/Admin/Index" class="btn btn-secondary">Back</a>
+</form>
