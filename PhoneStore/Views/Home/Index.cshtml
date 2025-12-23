@@ -2,112 +2,230 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
     body {
-        background: #f2f6fa;
-        font-family: 'Segoe UI', sans-serif;
+        background-color: #0f172a;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        color: #f8fafc;
+        margin: 0;
+        overflow-x: hidden;
     }
 
-    /* Tepadagi Phone Store qutisi */
-    .page-title-box {
-        display: inline-block;
-        background-color: #1e40af; /* ko‘k rang */
-        color: #fff;
-        font-weight: 900;
-        font-size: 2rem;
-        padding: 0.8rem 1.5rem;
-        border-radius: 12px; /* tort burchak */
-        margin-bottom: 3rem;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    .bg-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 40%);
+        z-index: -1;
     }
 
+    .custom-nav {
+        padding: 25px 0;
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-logo {
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: -1px;
+        background: linear-gradient(90deg, #6366f1, #0ea5e9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-decoration: none;
+    }
+
+    .hero-box {
+        padding: 80px 0 50px;
+    }
+
+        .hero-box h1 {
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+    /* KARDLAR */
     .phone-card {
-        border-radius: 15px;
-        overflow: hidden;
-        transition: transform 0.3s, box-shadow 0.3s;
-        cursor: pointer;
-        background: #ffffff;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-        padding: 1rem;
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        padding: 20px; /* Ichki paddingni biroz kamaytirdik rasm uchun */
+        transition: all 0.3s ease;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
     }
 
         .phone-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .phone-card .card-body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 1.5rem;
-        }
+    /* RASM UCHUN STIL */
+    .image-container {
+        width: 100%;
+        height: 220px;
+        background: rgba(15, 23, 42, 0.3);
+        border-radius: 18px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-    .phone-name {
+    .phone-img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain; /* Rasmni buzmasdan sig'diradi */
+        transition: transform 0.5s ease;
+    }
+
+    .phone-card:hover .phone-img {
+        transform: scale(1.1); /* Hoverda rasm biroz kattalashadi */
+    }
+
+    .placeholder-icon {
+        font-size: 4rem;
+        color: rgba(99, 102, 241, 0.3);
+    }
+
+    .name-text {
         font-weight: 700;
-        font-size: 1.4rem;
-        color: #1e3a8a;
-        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        margin-bottom: 8px;
     }
 
-    .phone-price {
-        font-weight: 700;
-        font-size: 1.2rem;
-        color: #0f766e;
-        margin-bottom: 0.5rem;
+    .price-text {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 15px;
+        background: linear-gradient(90deg, #fff, #94a3b8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
-    .phone-description {
-        font-size: 1rem;
-        color: #555;
-        margin-bottom: 1rem;
+    .desc-text {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 25px;
+        flex-grow: 1; /* Tavsif qismini bir xil qilish uchun */
     }
 
-    .buy-btn {
-        background: linear-gradient(45deg, #f59e0b, #f97316);
-        color: white;
+    .btn-action {
+        background: #fff;
+        color: #0f172a;
         border: none;
-        border-radius: 50px;
-        padding: 0.6rem 1.2rem;
-        font-weight: 600;
-        transition: transform 0.2s, background 0.3s;
+        border-radius: 14px;
+        padding: 12px 20px;
+        font-weight: 700;
+        width: 100%;
+        transition: all 0.2s;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
     }
 
-        .buy-btn:hover {
-            background: linear-gradient(45deg, #f97316, #f59e0b);
-            transform: scale(1.05);
+        .btn-action:hover {
+            background: #6366f1;
+            color: #fff;
         }
+
+    .badge-new {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        z-index: 2;
+        background: rgba(99, 102, 241, 0.8);
+        backdrop-filter: blur(4px);
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
 </style>
 
-<div class="container my-5 text-center">
-    <div class="page-title-box">
-        <i class="bi bi-phone-fill"></i> Phone Store
+<div class="bg-glow"></div>
+
+<nav class="custom-nav sticky-top">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a href="#" class="nav-logo">PHONE.STORE</a>
+        <div class="d-flex gap-3">
+            <button class="btn btn-sm btn-outline-secondary rounded-pill text-white px-3">Kirish</button>
+            <div class="position-relative">
+                <i class="bi bi-cart3 fs-4"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style="font-size: 0.6rem;">0</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="hero-box text-center">
+        <h1>Premium Gadjetlar</h1>
+        <p class="text-secondary fs-5">Eng so'nggi texnologiyalar va original sifat.</p>
     </div>
 
-    @if (!Model.Any())
+    @if (Model != null && Model.Any())
     {
-        <div class="alert alert-info text-center shadow-sm rounded mt-4">
-            Hozircha telefonlar mavjud emas.
-        </div>
-    }
-    else
-    {
-        <div class="row g-4 mt-4">
+        <div class="row g-4 mb-5">
             @foreach (var phone in Model)
             {
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card phone-card h-100">
-                        <div class="card-body">
-                            <h5 class="phone-name">@phone.Name</h5>
-                            <p class="phone-price"><i class="bi bi-currency-dollar"></i> @phone.Price</p>
-                            <p class="phone-description">@phone.Description</p>
-                            <button class="buy-btn w-100"><i class="bi bi-cart-plus"></i> Buy</button>
+                <div class="col-xl-4 col-md-6">
+                    <div class="phone-card">
+                        <span class="badge-new">YANGI</span>
+
+                        <div class="image-container">
+                            @if (!string.IsNullOrEmpty(phone.ImageUrl))
+                            {
+                                <img src="@phone.ImageUrl" alt="@phone.Name" class="phone-img" />
+                            }
+                            else
+                            {
+                                <i class="bi bi-phone placeholder-icon"></i>
+                            }
                         </div>
+
+                        <h3 class="name-text">@phone.Name</h3>
+                        <div class="price-text">$@phone.Price</div>
+                        <p class="desc-text">
+                            @(phone.Description?.Length > 100 ? phone.Description.Substring(0, 100) + "..." : phone.Description)
+                        </p>
+
+                        <button class="btn-action">
+                            <i class="bi bi-bag-plus"></i> Savatga qo'shish
+                        </button>
                     </div>
                 </div>
             }
         </div>
     }
+    else
+    {
+        <div class="text-center p-5 opacity-50">
+            <i class="bi bi-box-seam display-1 text-primary"></i>
+            <p class="mt-3 fs-4">Hozircha do'kon bo'sh</p>
+        </div>
+    }
 </div>
+
+<footer class="py-5 text-center text-secondary border-top border-dark mt-5">
+    <p>© 2025 Phone Store. Sifatli gadjetlar manzili.</p>
+</footer>

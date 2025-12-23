@@ -14,8 +14,8 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(string username, string password)
     {
-        // 🔴 Hozircha oddiy (test uchun)
-        if (username == "admin" && password == "123")
+        // vaqtinchalik admin
+        if (username == "admin" && password == "1234")
         {
             var claims = new List<Claim>
             {
@@ -38,7 +38,9 @@ public class AccountController : Controller
 
     public async Task<IActionResult> Logout()
     {
-        await HttpContext.SignOutAsync();
+        await HttpContext.SignOutAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme);
+
         return RedirectToAction("Login");
     }
 }

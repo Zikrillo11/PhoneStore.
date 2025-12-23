@@ -1,3 +1,4 @@
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using PhoneStore.BLL.Interfaces;
 
@@ -14,6 +15,9 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
+        // 🔴 MUHIM: Admin login bo‘lsa ham, Home’ga kirganda chiqib ketadi
+        await HttpContext.SignOutAsync();
+
         var phones = await _phoneService.GetAllAsync();
         return View(phones);
     }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PhoneStore.BLL.Interfaces;
 using PhoneStore.Domain.Entities;
 
-[Authorize] // 🔒 Admin faqat login bo‘lsa ochiladi
+[Authorize] // 🔒 Login bo‘lmasa Admin ochilmaydi
 public class AdminController : Controller
 {
     private readonly IPhoneService _phoneService;
