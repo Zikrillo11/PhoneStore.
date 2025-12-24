@@ -4,49 +4,143 @@
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 <head>
     <meta charset="utf-8" />
-    <title>Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light d-flex align-items-center justify-content-center" style="height:100vh;">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <div class="card shadow" style="width:420px;">
-        <div class="card-body p-4">
-            <h4 class="text-center fw-bold mb-4">Admin Panelga Kirish</h4>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Tungi osmon foni */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+        }
 
-            <form method="post">
-                <div class="mb-3">
-                    <label class="form-label">Login</label>
-                    <input type="text"
-                           name="username"
-                           class="form-control"
-                           placeholder="Loginni kiriting"
-                           required />
-                </div>
+        .login-card {
+            width: 400px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
 
-                <div class="mb-4">
-                    <label class="form-label">Parol</label>
-                    <input type="password"
-                           name="password"
-                           class="form-control"
-                           placeholder="Parolni kiriting"
-                           required />
-                </div>
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 35px;
+            font-weight: 600;
+            /* Neon matn effekti */
+            text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+        }
 
-                <button type="submit" class="btn btn-primary w-100">
-                    Kirish
-                </button>
-            </form>
+        .input-group-custom {
+            position: relative;
+            margin-bottom: 25px;
+        }
 
-            @if (ViewBag.Error != null)
-            {
-                <div class="alert alert-danger text-center mt-3 p-2">
-                    @ViewBag.Error
-                </div>
+            .input-group-custom input {
+                width: 100%;
+                padding: 12px 45px 12px 20px;
+                background: rgba(0, 0, 0, 0.3);
+                border: 2px solid #00a2ff;
+                border-radius: 30px;
+                outline: none;
+                color: white;
+                transition: 0.3s;
             }
-        </div>
+
+                .input-group-custom input:focus {
+                    box-shadow: 0 0 15px rgba(0, 162, 255, 0.4);
+                }
+
+            .input-group-custom i {
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #4b0082, #0000ff, #00a2ff);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 162, 255, 0.3);
+        }
+
+            .btn-login:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0, 162, 255, 0.5);
+                color: white;
+            }
+
+        .alert-custom {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid #dc3545;
+            color: #ff8080;
+            border-radius: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Login</h2>
+
+        <form method="post">
+            <div class="input-group-custom">
+                <input type="text"
+                       name="username"
+                       placeholder="Username"
+                       required />
+                <i class="fas fa-user"></i>
+            </div>
+
+            <div class="input-group-custom">
+                <input type="password"
+                       name="password"
+                       placeholder="Password"
+                       required />
+                <i class="fas fa-lock"></i>
+            </div>
+
+            <button type="submit" class="btn-login">
+                Kirish
+            </button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-custom text-center">
+                <i class="fas fa-exclamation-circle me-2"></i> @ViewBag.Error
+            </div>
+        }
     </div>
 
 </body>
