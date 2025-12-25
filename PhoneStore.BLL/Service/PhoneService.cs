@@ -21,16 +21,24 @@ public class PhoneService : IPhoneService
 
     public async Task<Phone?> GetByIdAsync(long id)
     {
-        return await _context.Phones.FirstOrDefaultAsync(p => p.Id == id);
+        return await _context.Phones.FindAsync(id);
     }
 
     public async Task<Phone> CreateAsync(Phone phone)
     {
-        await _context.Phones.AddAsync(phone);
-        await _context.SaveChangesAsync();
-        return phone;
-    }
+        var newPhone = new Phone
+        {
+            Name = phone.Name,
+            Price = phone.Price,
+            Description = phone.Description,
+            ImageUrl = phone.ImageUrl
+        };
 
+        await _context.Phones.AddAsync(newPhone);
+        await _context.SaveChangesAsync();
+
+        return newPhone;
+    }
 
     public async Task<bool> UpdateAsync(Phone phone)
     {
@@ -41,6 +49,7 @@ public class PhoneService : IPhoneService
         existing.Name = phone.Name;
         existing.Price = phone.Price;
         existing.Description = phone.Description;
+        existing.ImageUrl = phone.ImageUrl; 
 
         await _context.SaveChangesAsync();
         return true;
