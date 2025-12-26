@@ -37,3 +37,43 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+/* ===== PAGE LAYOUT ===== */
+body {
+    background: radial-gradient(circle at top, #0f172a, #020617 60%);
+    min-height: 100vh;
+}
+
+/* Asosiy sahifa konteyneri */
+.page-shell {
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* ===== TOP PANEL ===== */
+.top-panel {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.top-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.top-subtitle {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+/* ===== CONTENT ZONE ===== */
+.content-zone {
+    padding: 10px;
+    border-radius: 24px;
+    background: linear-gradient( 180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.0) );
+}
