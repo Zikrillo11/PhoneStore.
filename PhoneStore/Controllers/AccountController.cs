@@ -15,7 +15,7 @@ public class AccountController : Controller
     public async Task<IActionResult> Login(string username, string password)
     {
         // vaqtinchalik admin
-        if (username == "zikrillo" && password == "0000")
+        if (username == "Zikrillo@gmail.com" && password == "0000")
         {
             var claims = new List<Claim>
             {
