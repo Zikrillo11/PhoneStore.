@@ -12,6 +12,14 @@ public class HomeController : Controller
     {
         _phoneService = phoneService;
     }
+    public async Task<IActionResult> Details(long id)
+    {
+        var phone = await _phoneService.GetByIdAsync(id);
+        if (phone == null)
+            return NotFound();
+
+        return View(phone);
+    }
 
     public async Task<IActionResult> Index()
     {
