@@ -3,187 +3,181 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
-    :root {
-        --primary: #00f2ff;
-        --secondary: #7000ff;
-        --accent: #ff00c1;
-        --bg-dark: #030712;
-        --card-bg: rgba(255, 255, 255, 0.03);
-        --glass-border: rgba(255, 255, 255, 0.1);
-    }
-
     body {
-        background: var(--bg-dark);
-        color: #fff;
+        background: linear-gradient(120deg, #f8fafc, #eef2ff);
         font-family: 'Segoe UI', system-ui, sans-serif;
+        color: #0f172a;
     }
 
-    /* Karta asosi */
-    .cyber-wrapper {
-        position: relative;
-        background: var(--card-bg);
-        border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        backdrop-filter: blur(10px);
+    .phone-card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 20px;
         height: 100%;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+        transition: 0.4s ease;
+        position: relative;
         overflow: hidden;
     }
 
-        /* Hover bo'lganda karta o'zgarishi */
-        .cyber-wrapper:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.15);
-            background: rgba(255, 255, 255, 0.07);
+        .phone-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(99,102,241,0.08));
+            opacity: 0;
+            transition: 0.4s;
         }
 
-    /* Rasm konteyneri */
-    .img-box {
-        padding: 20px;
-        transition: transform 0.5s ease;
+        .phone-card:hover {
+            transform: translateY(-12px) scale(1.02);
+        }
+
+            .phone-card:hover::before {
+                opacity: 1;
+            }
+
+    .phone-img {
+        text-align: center;
+        margin-bottom: 15px;
     }
 
-    .cyber-wrapper:hover .img-box {
-        transform: scale(1.05);
+        .phone-img img {
+            height: 210px;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+    .phone-card:hover img {
+        transform: rotate(-4deg) scale(1.08);
     }
 
-    /* Quick Actions (Yondagi tugmalar) */
-    .side-actions {
+    .badge-stock {
+        display: inline-block;
+        background: #ecfdf5;
+        color: #059669;
+        font-size: 11px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-weight: 600;
+    }
+
+    .phone-title {
+        font-size: 15px;
+        font-weight: 700;
+        margin: 10px 0 5px;
+    }
+
+    .phone-specs {
+        font-size: 12px;
+        color: #64748b;
+        display: flex;
+        gap: 10px;
+    }
+
+    .price {
+        font-size: 22px;
+        font-weight: 800;
+        color: #6366f1;
+    }
+
+    .old-price {
+        font-size: small;
+        text-decoration: line-through;
+        color: #94a3b8;
+    }
+
+    .btn-cart {
+        margin-top: 15px;
+        width: 100%;
+        padding: 12px;
+        border-radius: 14px;
+        background: #6366f1;
+        border: none;
+        color: white;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+        .btn-cart:hover {
+            background: #4f46e5;
+            box-shadow: 0 10px 25px rgba(99,102,241,0.35);
+        }
+
+    .float-icons {
         position: absolute;
-        right: -50px;
-        top: 20px;
+        top: 18px;
+        right: 18px;
         display: flex;
         flex-direction: column;
         gap: 8px;
-        transition: right 0.3s ease;
-        z-index: 5;
+        z-index: 2;
     }
 
-    .cyber-wrapper:hover .side-actions {
-        right: 15px;
-    }
-
-    .btn-action {
-        width: 35px;
-        height: 35px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid var(--glass-border);
-        border-radius: 8px;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-
-        .btn-action:hover {
-            background: var(--primary);
-            color: #000;
-            border-color: var(--primary);
+        .float-icons a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            text-decoration: none;
         }
 
-    /* Status yorlig'i */
-    .stock-label {
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        padding: 2px 8px;
-        border-radius: 4px;
-        background: rgba(16, 185, 129, 0.1);
-        color: #10b981;
-        border: 1px solid rgba(16, 185, 129, 0.2);
-    }
-
-    /* Narx qismi */
-    .price-tag {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: var(--primary);
-        text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
-    }
-
-    /* Xususiyatlar nishoni */
-    .spec-pill {
-        font-size: 11px;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 3px 8px;
-        border-radius: 6px;
-        color: #aaa;
-    }
-
-    /* Savatga qo'shish tugmasi */
-    .btn-buy {
-        width: 100%;
-        background: transparent;
-        border: 1px solid var(--primary);
-        color: var(--primary);
-        padding: 10px;
-        border-radius: 12px;
-        font-weight: 600;
-        margin-top: 15px;
-        transition: 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-    }
-
-        .btn-buy:hover {
-            background: var(--primary);
-            color: #000;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
-        }
+            .float-icons a:hover {
+                background: #6366f1;
+                color: white;
+            }
 </style>
 
 <div class="container py-5">
     <div class="row g-4">
+
         @foreach (var phone in Model)
         {
             <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="cyber-wrapper p-3">
 
-                    <div class="side-actions">
-                        <a href="#" class="btn-action"><i class="bi bi-heart"></i></a>
-                        <a href="#" class="btn-action"><i class="bi bi-eye"></i></a>
-                    </div>
+                <a asp-action="Details"
+                   asp-route-id="@phone.Id"
+                   style="text-decoration:none; color:inherit; display:block;">
 
-                    <div class="img-box text-center">
-                        <img src="@phone.ImageUrl"
-                             class="img-fluid"
-                             style="height: 180px; object-fit: contain;"
-                             alt="@phone.Name">
-                    </div>
+                    <div class="phone-card">
 
-                    <div class="info-box mt-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="stock-label">Mavjud</span>
-                            <div class="text-warning small">
-                                <i class="bi bi-star-fill"></i> 4.8
-                            </div>
+                        <div class="float-icons">
+                            <a href="#"><i class="bi bi-heart"></i></a>
+                            <a href="#"><i class="bi bi-search"></i></a>
                         </div>
 
-                        <h6 class="fw-bold text-truncate mb-1">@phone.Name</h6>
-
-                        <div class="d-flex gap-2 mb-3">
-                            <span class="spec-pill">8/256 GB</span>
-                            <span class="spec-pill">5G</span>
+                        <div class="phone-img">
+                            <img src="@phone.ImageUrl" alt="@phone.Name" class="img-fluid" />
                         </div>
 
-                        <div class="d-flex align-items-baseline gap-2">
-                            <span class="price-tag">$@phone.Price.ToString("N0")</span>
-                            <small class="text-muted text-decoration-line-through" style="font-size: 0.8rem;">
-                                $@(phone.Price + 120)
-                            </small>
+                        <span class="badge-stock">MAVJUD</span>
+
+                        <div class="phone-title">@phone.Name</div>
+
+                        <div class="phone-specs">
+                            <span>8/256 GB</span>
+                            <span>5G</span>
                         </div>
 
-                        <button class="btn-buy">
-                            <i class="bi bi-cart3"></i> SAVATCHAGA
+                        <div class="d-flex align-items-center gap-2 mt-2">
+                            <div class="price">$@phone.Price.ToString("N0")</div>
+                            <div class="old-price">$@(phone.Price + 150)</div>
+                        </div>
+
+                        <button class="btn-cart" type="button">
+                            <i class="bi bi-cart"></i> SAVATCHAGA
                         </button>
+
                     </div>
-                </div>
+                </a>
+
             </div>
         }
+
     </div>
 </div>
