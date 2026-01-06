@@ -19,5 +19,5 @@ public class Phone
     public string? Description { get; set; }
 
     [Column("image_url")]
-    public string? ImageUrl { get; set; } // rasm URL saqlash uchun
+    public string? ImageUrl { get; set; } 
 }
