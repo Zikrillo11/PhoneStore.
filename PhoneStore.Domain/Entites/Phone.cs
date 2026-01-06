@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PhoneStore.Domain.Entities;
 
-[Table("phones")]
+    [Table("phones")]
 public class Phone
 {
     [Key, Column("id")]
