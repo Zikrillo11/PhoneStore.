@@ -5,33 +5,28 @@
 
 <style>
     body {
-        background: linear-gradient(120deg, #f8fafc, #eef2ff);
+        background: linear-gradient(120deg,#f8fafc,#eef2ff);
         font-family: 'Segoe UI', system-ui, sans-serif;
-        color: #0f172a;
     }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
-        padding: 90px 0;
-        background: linear-gradient(135deg, #6366f1, #7c3aed);
-        border-radius: 0 0 60px 60px;
+        padding: 70px 0;
+        background: linear-gradient(135deg,#6366f1,#7c3aed);
         color: white;
-        margin-bottom: 60px;
+        border-radius: 0 0 60px 60px;
+        text-align: center;
+        margin-bottom: 40px;
     }
+
 
         .hero h1 {
             font-size: 3rem;
             font-weight: 900;
         }
 
-            .hero h1 span {
-                color: #fde047;
-            }
-
-        .hero p {
-            opacity: .9;
-            margin-top: 10px;
-            font-size: 18px;
+        .hero span {
+            color: #fde047;
         }
 
     .hero-search {
@@ -45,53 +40,51 @@
 
         .hero-search input {
             flex: 1;
-            padding: 14px 16px;
             border: none;
+            padding: 14px 16px;
             outline: none;
         }
 
         .hero-search button {
-            padding: 0 20px;
             border: none;
             background: #6366f1;
             color: white;
+            padding: 0 20px;
         }
 
-    /* ===== CARD ===== */
+
+    /* CARD */
     .phone-card {
-        background: #fff;
+        background: white;
         border-radius: 22px;
-        padding: 18px;
-        height: 100%;
-        box-shadow: 0 25px 40px rgba(0,0,0,0.08);
-        transition: .35s;
+        padding: 16px;
+        box-shadow: 0 20px 40px rgba(0,0,0,.08);
+        transition: .3s;
         position: relative;
     }
 
         .phone-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,.15);
+            transform: translateY(-8px);
         }
 
     .icons {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 14px;
+        right: 14px;
         display: flex;
         gap: 6px;
+        z-index: 2;
     }
 
         .icons i {
             width: 34px;
             height: 34px;
-            border-radius: 50%;
             background: #f1f5f9;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 15px;
             cursor: pointer;
-            transition: .25s;
         }
 
             .icons i:hover {
@@ -105,31 +98,13 @@
     }
 
         .phone-img img {
-            height: 190px;
+            height: 180px;
             object-fit: contain;
         }
 
-    .badge-stock {
-        background: #ecfdf5;
-        color: #059669;
-        font-size: 11px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        font-weight: 600;
-    }
-
     .phone-name {
-        margin-top: 10px;
         font-weight: 700;
-        font-size: 15px;
-    }
-
-    .specs {
-        font-size: 12px;
-        color: #64748b;
-        display: flex;
-        gap: 10px;
-        margin: 5px 0;
+        margin-top: 10px;
     }
 
     .price {
@@ -138,87 +113,161 @@
         color: #6366f1;
     }
 
-    .old {
-        font-size: 12px;
-        text-decoration: line-through;
-        color: #94a3b8;
-    }
-
     .btn-cart {
+        margin-top: 14px;
         width: 100%;
-        border: none;
         padding: 12px;
         border-radius: 14px;
+        border: none;
         background: #6366f1;
         color: white;
-        margin-top: 15px;
-        transition: .3s;
+        font-weight: 600;
+        cursor: pointer;
     }
 
-        .btn-cart:hover {
-            background: #4f46e5;
+    /* CART */
+    .cart {
+        margin: 60px auto;
+        background: white;
+        border-radius: 22px;
+        padding: 25px;
+        box-shadow: 0 20px 50px rgba(0,0,0,.12);
+        max-width: 900px;
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 12px 0;
+    }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
         }
+
+    .cart-remove {
+        margin-left: auto;
+        border: none;
+        background: none;
+        color: red;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .sort-btn {
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: none;
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,.15);
+    transition: .25s;
+}
+
+.sort-btn:hover {
+    background: #6366f1;
+    color: white;
+}
+
 </style>
 
-<!-- ===== HERO ===== -->
-<section class="hero text-center">
-    <div class="container">
-        <h1>Top <span>Smartfonlar</span></h1>
-        <p>Eng yangi telefonlar · Eng yaxshi narxlar</p>
+<!-- HERO -->
+<section class="hero">
+    <h1>Top <span>Smartfonlar</span></h1>
+    <p>Qidir · tanla · savatchaga qo‘sh</p>
 
-        <div class="hero-search">
-            <input type="text" placeholder="Telefon qidirish...">
-            <button><i class="bi bi-search"></i></button>
-        </div>
+    <div class="hero-search">
+        <input type="text" id="searchInput" placeholder="Telefon qidirish...">
+        <button><i class="bi bi-search"></i></button>
     </div>
 </section>
 
-<!-- ===== PHONES ===== -->
+<!-- PHONES -->
 <div class="container">
-    <div class="row g-4">
+    <div class="row g-4" id="phoneList">
 
         @foreach (var phone in Model)
         {
-            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 phone-item"
+                 data-name="@phone.Name.ToLower()">
 
-                <a asp-action="Details"
-                   asp-route-id="@phone.Id"
-                   style="text-decoration:none;color:inherit">
+                <div class="phone-card">
 
-                    <div class="phone-card">
-
-                        <div class="icons">
-                            <i class="bi bi-heart"></i>
-                            <i class="bi bi-eye"></i>
-                        </div>
-
-                        <div class="phone-img">
-                            <img src="@phone.ImageUrl" alt="@phone.Name" class="img-fluid">
-                        </div>
-
-                        <span class="badge-stock">MAVJUD</span>
-
-                        <div class="phone-name">@phone.Name</div>
-
-                        <div class="specs">
-                            <span><i class="bi bi-memory"></i> 8/256</span>
-                            <span><i class="bi bi-reception-4"></i> 5G</span>
-                        </div>
-
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="price">$@phone.Price.ToString("N0")</div>
-                            <div class="old">$@(phone.Price + 150)</div>
-                        </div>
-
-                        <button class="btn-cart" type="button">
-                            <i class="bi bi-cart3"></i> SAVATCHAGA
-                        </button>
-
+                    <div class="icons">
+                        <i class="bi bi-heart" onclick="alert('Like bosildi')"></i>
+                        <i class="bi bi-eye" onclick="alert('@phone.Name')"></i>
                     </div>
-                </a>
 
+                    <div class="phone-img">
+                        <img src="@phone.ImageUrl">
+                    </div>
+
+                    <div class="phone-name">@phone.Name</div>
+                    <div class="price">$@phone.Price</div>
+
+                    <button class="btn-cart"
+                            onclick="addToCart('@phone.Name','@phone.Price','@phone.ImageUrl')">
+                        <i class="bi bi-cart3"></i> Savatchaga
+                    </button>
+
+                </div>
             </div>
         }
 
     </div>
 </div>
+
+<!-- CART -->
+<div class="cart">
+    <h3>🛒 Savatcha</h3>
+    <div id="cartItems">Savatcha bo‘sh</div>
+</div>
+
+<script>
+    /* SEARCH */
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+        const q = this.value.toLowerCase();
+        document.querySelectorAll(".phone-item").forEach(p => {
+            p.style.display = p.dataset.name.includes(q) ? "block" : "none";
+        });
+    });
+
+    /* CART */
+    let cart = [];
+
+    function addToCart(name, price, img) {
+        cart.push({ name, price, img });
+        renderCart();
+    }
+
+    function removeItem(i) {
+        cart.splice(i, 1);
+        renderCart();
+    }
+
+    function renderCart() {
+        let box = document.getElementById("cartItems");
+        if (cart.length === 0) {
+            box.innerHTML = "Savatcha bo‘sh";
+            return;
+        }
+
+        box.innerHTML = "";
+        cart.forEach((x, i) => {
+            box.innerHTML += `
+                <div class="cart-item">
+                    <img src="${x.img}">
+                    <div>
+                        <b>${x.name}</b><br>$${x.price}
+                    </div>
+                    <button class="cart-remove" onclick="removeItem(${i})">✖</button>
+                </div>`;
+        });
+    }
+</script>
+
+
