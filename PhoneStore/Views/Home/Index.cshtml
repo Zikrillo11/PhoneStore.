@@ -7,16 +7,16 @@
     body {
         background: linear-gradient(120deg, #f8fafc, #eef2ff);
         font-family: 'Segoe UI', system-ui, sans-serif;
-        color: #0f172a;
     }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
         padding: 90px 0;
         background: linear-gradient(135deg, #6366f1, #7c3aed);
         border-radius: 0 0 60px 60px;
         color: white;
         margin-bottom: 60px;
+        text-align: center;
     }
 
         .hero h1 {
@@ -24,19 +24,13 @@
             font-weight: 900;
         }
 
-            .hero h1 span {
-                color: #fde047;
-            }
-
-        .hero p {
-            opacity: .9;
-            margin-top: 10px;
-            font-size: 18px;
+        .hero span {
+            color: #fde047
         }
 
     .hero-search {
         max-width: 420px;
-        margin: 30px auto 15px;
+        margin: 30px auto;
         display: flex;
         background: white;
         border-radius: 16px;
@@ -45,55 +39,31 @@
 
         .hero-search input {
             flex: 1;
-            padding: 14px 16px;
+            padding: 14px;
             border: none;
             outline: none;
         }
 
         .hero-search button {
-            padding: 0 20px;
             border: none;
+            padding: 0 20px;
             background: #6366f1;
             color: white;
         }
 
-    /* ===== SORT BUTTONS ===== */
-    .sort-wrap {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-    }
-
-    .sort-btn {
-        padding: 10px 16px;
-        border-radius: 12px;
-        border: none;
-        background: white;
-        font-weight: 600;
-        cursor: pointer;
-        box-shadow: 0 6px 18px rgba(0,0,0,.15);
-        transition: .25s;
-    }
-
-        .sort-btn:hover {
-            background: #6366f1;
-            color: white;
-        }
-
-    /* ===== CARD ===== */
+    /* CARD */
     .phone-card {
-        background: #fff;
+        background: white;
         border-radius: 22px;
         padding: 18px;
-        height: 100%;
-        box-shadow: 0 25px 40px rgba(0,0,0,0.08);
-        transition: .35s;
+        box-shadow: 0 25px 40px rgba(0,0,0,.08);
+        transition: .3s;
         position: relative;
+        height: 100%;
     }
 
         .phone-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,.15);
+            transform: translateY(-8px);
         }
 
     .icons {
@@ -102,6 +72,7 @@
         right: 15px;
         display: flex;
         gap: 6px;
+        z-index: 2;
     }
 
         .icons i {
@@ -112,9 +83,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 15px;
             cursor: pointer;
-            transition: .25s;
+            transition: .2s;
         }
 
             .icons i:hover {
@@ -128,37 +98,14 @@
     }
 
         .phone-img img {
-            height: 190px;
+            height: 180px;
             object-fit: contain;
         }
 
-    .badge-stock {
-        background: #ecfdf5;
-        color: #059669;
-        font-size: 11px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        font-weight: 600;
-    }
-
-    .phone-name {
-        margin-top: 10px;
-        font-weight: 700;
-        font-size: 15px;
-    }
-
-    .specs {
-        font-size: 12px;
-        color: #64748b;
-        display: flex;
-        gap: 10px;
-        margin: 5px 0;
-    }
-
     .price {
+        color: #6366f1;
         font-size: 22px;
         font-weight: 800;
-        color: #6366f1;
     }
 
     .old {
@@ -170,77 +117,58 @@
     .btn-cart {
         width: 100%;
         border: none;
-        padding: 12px;
-        border-radius: 14px;
         background: #6366f1;
         color: white;
+        padding: 12px;
+        border-radius: 14px;
         margin-top: 15px;
-        transition: .3s;
     }
 
-        .btn-cart:hover {
-            background: #4f46e5;
-        }
 </style>
 
-<!-- ===== HERO ===== -->
-<section class="hero text-center">
-    <div class="container">
-        <h1>Top <span>Smartfonlar</span></h1>
-        <p>Eng yangi telefonlar · Eng yaxshi narxlar</p>
+<!-- HERO -->
+<section class="hero">
+    <h1>Top <span>Smartfonlar</span></h1>
+    <p>Eng yangi va zo‘r telefonlar</p>
 
-        <div class="hero-search">
-            <input type="text" id="searchInput" placeholder="Telefon qidirish...">
-            <button><i class="bi bi-search"></i></button>
-        </div>
-
-        <div class="sort-wrap">
-            <button class="sort-btn" onclick="sortLowHigh()">🔽 arzon → qimmat</button>
-            <button class="sort-btn" onclick="sortHighLow()">🔼 qimmat → arzon</button>
-            <button class="sort-btn" onclick="resetSort()">🔁 reset</button>
-        </div>
+    <div class="hero-search">
+        <input type="text" id="searchInput" placeholder="Telefon qidirish...">
+        <button><i class="bi bi-search"></i></button>
     </div>
 </section>
 
-<!-- ===== PHONES ===== -->
+<!-- PHONES -->
 <div class="container">
     <div class="row g-4" id="phoneList">
 
         @foreach (var phone in Model)
         {
-            <div class="col-sm-6 col-md-4 col-lg-3 phone-item"
-                 data-name="@phone.Name.ToLower()"
-                 data-price="@phone.Price">
+            <div class="col-sm-6 col-md-4 col-lg-3 phone-item">
 
-                <div class="phone-card">
+                <div class="phone-card"
+                     data-name="@phone.Name"
+                     data-price="@phone.Price"
+                     data-img="@phone.ImageUrl">
 
                     <div class="icons">
-                        <i class="bi bi-heart"></i>
-                        <i class="bi bi-eye"></i>
+                        <i class="bi bi-heart fav-btn"></i>
+                        <i class="bi bi-eye view-btn" data-bs-toggle="modal" data-bs-target="#detailsModal"></i>
                     </div>
 
                     <div class="phone-img">
                         <img src="@phone.ImageUrl" alt="@phone.Name">
                     </div>
 
-                    <span class="badge-stock">MAVJUD</span>
+                    <h6 class="mt-2">@phone.Name</h6>
 
-                    <div class="phone-name">@phone.Name</div>
-
-                    <div class="specs">
-                        <span><i class="bi bi-memory"></i> 8/256</span>
-                        <span><i class="bi bi-reception-4"></i> 5G</span>
-                    </div>
-
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="price">$@phone.Price.ToString("N0")</div>
+                    <div class="d-flex gap-2 align-items-center">
+                        <div class="price">$@phone.Price</div>
                         <div class="old">$@(phone.Price + 150)</div>
                     </div>
 
-                    <button class="btn-cart">
-                        <i class="bi bi-cart3"></i> SAVATCHAGA
+                    <button class="btn-cart cart-btn" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <i class="bi bi-cart3"></i> Savatchaga
                     </button>
-
                 </div>
             </div>
         }
@@ -248,32 +176,74 @@
     </div>
 </div>
 
-<script>
-    const searchInput = document.getElementById("searchInput");
-    const phoneList = document.getElementById("phoneList");
-    const cards = Array.from(document.querySelectorAll(".phone-item"));
-    const original = [...cards];
+<!-- DETAILS MODAL -->
+<div class="modal fade" id="detailsModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h5 id="modalTitle"></h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-5 text-center">
+                    <img id="modalImg" class="img-fluid">
+                </div>
+                <div class="col-md-7">
+                    <h3 id="modalPrice" class="text-primary"></h3>
+                    <p>8/256 GB · 5G · AMOLED</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    searchInput.addEventListener("keyup", () => {
-        const value = searchInput.value.toLowerCase();
-        cards.forEach(c => {
-            c.style.display = c.dataset.name.includes(value) ? "block" : "none";
-        });
+<!-- CART MODAL -->
+<div class="modal fade" id="cartModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h5>🛒 Savatcha</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="cartItems"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const cart = [];
+
+    document.querySelectorAll(".view-btn").forEach(btn => {
+        btn.onclick = () => {
+            const c = btn.closest(".phone-card");
+            modalTitle.innerText = c.dataset.name;
+            modalPrice.innerText = "$" + c.dataset.price;
+            modalImg.src = c.dataset.img;
+        }
     });
 
-    function sortLowHigh() {
-        cards.sort((a, b) => a.dataset.price - b.dataset.price)
-             .forEach(c => phoneList.appendChild(c));
-    }
+    document.querySelectorAll(".cart-btn").forEach(btn => {
+        btn.onclick = () => {
+            const c = btn.closest(".phone-card");
+            cart.push({ name: c.dataset.name, price: c.dataset.price });
+            cartItems.innerHTML = cart.map(x =>
+                `<div class="d-flex justify-content-between border-bottom py-2">
+                    <span>${x.name}</span><b>$${x.price}</b>
+                </div>`
+            ).join("");
+        }
+    });
 
-    function sortHighLow() {
-        cards.sort((a, b) => b.dataset.price - a.dataset.price)
-             .forEach(c => phoneList.appendChild(c));
-    }
+    document.querySelectorAll(".fav-btn").forEach(b=>{
+        b.onclick=()=>b.classList.toggle("text-danger");
+    });
 
-    function resetSort() {
-        original.forEach(c => phoneList.appendChild(c));
-        searchInput.value = "";
-        cards.forEach(c => c.style.display = "block");
+    searchInput.onkeyup = () => {
+        const v = searchInput.value.toLowerCase();
+        document.querySelectorAll(".phone-item").forEach(c=>{
+            c.style.display = c.innerText.toLowerCase().includes(v) ? "" : "none";
+        });
     }
 </script>
